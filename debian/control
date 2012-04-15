@@ -1,0 +1,22 @@
+Source: lightdm-webkit-greeter
+Section: x11
+Priority: optional
+Maintainer: Rahman Yusri Aftian <aftian@di.blankon.in>
+XSBC-Original-Maintainer: Robert Ancell <robert.ancell@ubuntu.com>
+Standards-Version: 3.9.1
+Build-Depends: debhelper (>= 7.0.50~),
+               dh-autoreconf,
+               gnome-common,
+               liblightdm-gobject-0-dev,
+               libwebkit-dev
+Homepage: https://launchpad.net/lightdm
+Vcs-Git: https://github.com/aftian/lightdm
+
+Package: lightdm-greeter-webkit
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: lightdm
+Provides: lightdm-greeter
+Description: LightDM Webkit Greeter
+ A LightDM greeter that uses WebKit (HTML/CSS).
