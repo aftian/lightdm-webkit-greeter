@@ -1,3 +1,23 @@
+lightdm-webkit-greeter (0.1.2-0blankon3) suroboyo; urgency=low
+
+  * debian/40-lightdm-webkit-greeter.conf:
+  * debian/install:
+  * debian/postinst:
+  * debian/postrm:
+    - Install lightdm configuration for greeter instead of using deprecated
+      lightdm-set-defaults
+  * debian/control:
+    - Use standards version 3.9.4
+
+ -- Rahman Yusri Aftian <aftian@di.blankon.in>  Sat, 14 Dec 2013 08:03:02 +0700
+
+lightdm-webkit-greeter (0.1.2-0blankon2) rote; urgency=low
+
+  * data/lightdm-webkit-greeter.conf change webkit-theme=manokwari-theme-greeter.
+  * Added debian/control depends manokwari-theme-greeter 
+
+ -- Mahyuddin <yudi.al@gmail.com>  Mon, 30 Apr 2012 09:46:59 +0700
+
 lightdm-webkit-greeter (0.1.0-0blankon1) rote; urgency=low
 
   * first package

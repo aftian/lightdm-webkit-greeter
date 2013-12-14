@@ -1,5 +1,5 @@
 greeter_PROGRAMS = lightdm-webkit-greeter
-greeterdir = $(GREETER_DIR)
+greeterdir = $(bindir)
 
 lightdm_webkit_greeter_SOURCES = \
 	lightdm-webkit-greeter.c

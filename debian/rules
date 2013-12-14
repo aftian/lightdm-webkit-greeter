@@ -3,4 +3,10 @@
 LDFLAGS+=-Wl,--as-needed
 
 %:
-	dh --with autoreconf $@
+	dh $@
+
+override_dh_auto_configure:
+	./autogen.sh --prefix=/usr
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz

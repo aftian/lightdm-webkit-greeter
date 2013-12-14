@@ -1,8 +1,4 @@
-SUBDIRS = po src themes
-
-EXTRA_DIST = \
-	autogen.sh \
-	lightdm-webkit-greeter.doap
+SUBDIRS = data po src themes
 
 DISTCLEANFILES = \
 	Makefile.in \
@@ -18,3 +14,7 @@ DISTCLEANFILES = \
 	omf.make \
 	xmldocs.make \
 	po/Makefile.in.in
+
+EXTRA_DIST = \
+	autogen.sh \
+	lightdm-webkit-greeter.doap

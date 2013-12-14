@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(lightdm-webkit-greeter, 0.1.0)
-AC_CONFIG_MACRO_DIR(m4)
+AC_INIT(lightdm-webkit-greeter, 0.1.2)
+AC_SUBST(THEME_DIR)
 AC_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
 AM_PROG_CC_C_O
@@ -15,7 +15,7 @@ dnl Dependencies
 dnl ###########################################################################
 
 PKG_CHECK_MODULES(GREETER, [
-    liblightdm-gobject-0
+    liblightdm-gobject-1
     gtk+-2.0
     webkit-1.0
     dbus-glib-1
@@ -24,11 +24,38 @@ PKG_CHECK_MODULES(GREETER, [
 dnl ###########################################################################
 dnl Configurable values
 dnl ###########################################################################
-THEME_DIR=`$PKG_CONFIG --define-variable=prefix=$prefix --variable=themedir liblightdm-gobject-0`
+THEME_DIR="/usr/share/lightdm-webkit/themes/"
+AC_ARG_WITH(theme-dir,
+            AS_HELP_STRING(--with-theme-dir=<path>,
+                           Theme directory to use for webkit themes),
+    if test x$withval != x; then
+        THEME_DIR="$withval"
+    fi
+)
 AC_SUBST(THEME_DIR)
+AC_DEFINE_UNQUOTED(THEME_DIR, "$THEME_DIR", Theme Dir)
 
-GREETER_DIR=`$PKG_CONFIG --define-variable=prefix=$prefix --variable=greeterdir liblightdm-gobject-0`
-AC_SUBST(GREETER_DIR)
+CONFIG_DIR="/etc/lightdm/"
+AC_ARG_WITH(config-dir,
+            AS_HELP_STRING(--with-config-dir=<path>,
+                           Configuration directory of lightdm),
+    if test x$withval != x; then
+        CONFIG_DIR="$withval"
+    fi
+)
+AC_SUBST(CONFIG_DIR)
+AC_DEFINE_UNQUOTED(CONFIG_DIR, "$CONFIG_DIR", Config Dir)
+
+DESKTOP_DIR="/usr/share/xgreeters/"
+AC_ARG_WITH(desktop-dir,
+            AS_HELP_STRING(--with-desktop-dir=<path>,
+                           Desktop directory of lightdm),
+    if test x$withval != x; then
+        DESKTOP_DIR="$withval"
+    fi
+)
+AC_SUBST(DESKTOP_DIR)
+AC_DEFINE_UNQUOTED(DESKTOP_DIR, "$DESKTOP_DIR", Desktop Dir)
 
 dnl ###########################################################################
 dnl Internationalization
@@ -44,6 +71,7 @@ dnl ###########################################################################
 
 AC_OUTPUT([
 Makefile
+data/Makefile
 src/Makefile
 po/Makefile.in
 themes/Makefile
@@ -60,5 +88,5 @@ echo "
 
         prefix:                   $prefix
         Theme directory:          $THEME_DIR
-        Greeter directory:        $GREETER_DIR
+        Configuration directory:  $CONFIG_DIR
 "
