@@ -12,7 +12,7 @@ Build-Depends: debhelper (>= 7.0.50~),
 Homepage: https://launchpad.net/lightdm
 Vcs-Git: https://github.com/aftian/lightdm
 
-Package: lightdm-greeter-webkit
+Package: lightdm-webkit-greeter
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
